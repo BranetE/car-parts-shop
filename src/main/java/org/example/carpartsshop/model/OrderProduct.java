@@ -7,6 +7,7 @@ import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Formula;
 
 @Embeddable
 @NoArgsConstructor
@@ -18,6 +19,6 @@ public class OrderProduct {
     private Product product;
     @Column
     private Long quantity;
-    @Column
+    @Formula(value = "select p.price * quantity from product p where p.id = product_id")
     private Double totalPrice;
 }
