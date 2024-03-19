@@ -28,6 +28,8 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+    @Column
+    private OrderStatus status;
     @ElementCollection
     private List<OrderProduct> products;
     @Formula(value = "select sum(p.price * op.quantity) from order_products op join products p on op.product_id = p.id where op.order_id = id")
